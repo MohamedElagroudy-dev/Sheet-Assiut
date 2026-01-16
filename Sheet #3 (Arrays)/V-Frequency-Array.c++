@@ -1,25 +1,36 @@
 #include <iostream>
 using namespace std;
+
+#define fast \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(NULL); \
+    cout.tie(NULL)
+
 int main()
 {
+    fast;
+
     int size, counter;
     cin >> size >> counter;
-    int arr[counter + 1] = {0};
+
+    long long arr[size];   // acceptable in competitive programming
     for (int i = 0; i < size; i++)
     {
-        int num;
-        cin >> num;
-        if (arr[num] == 0)
-        {
-            arr[num] = 1;
-        }
-        else
-        {
-            arr[num] = arr[num] + 1;
-        }
+        cin >> arr[i];
     }
+
+    long long freq[counter + 1] = {0};
+
+    for (int i = 0; i < size; i++)   // FIXED
+    {
+        if (arr[i] <= counter)      // SAFETY CHECK
+            freq[arr[i]]++;
+    }
+
     for (int i = 1; i <= counter; i++)
     {
-        cout << arr[i] << endl;
+        cout << freq[i] << '\n';
     }
+
+    return 0;
 }
